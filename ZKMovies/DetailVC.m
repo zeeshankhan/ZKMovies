@@ -28,12 +28,13 @@
     self.navigationItem.title = self.md.title;
     [self.tableView setSeparatorColor:[UIColor seperatorColor]];
 
-    if (self.md.thumb == nil)
+    if (self.md.poster == nil)
         [self downloadThumb];
     else
         [self setTableBackground];
     
     self.imageDownloadQueue = [[NSOperationQueue alloc] init];
+    self.imageDownloadQueue.name = @"ZKActorListingQueue";
     [self.imageDownloadQueue setMaxConcurrentOperationCount:10];
 
     self.arrDetail = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DetailScreen" ofType:@"plist"]];
@@ -55,7 +56,7 @@
 
 - (void)setTableBackground {
 
-    UIImage *img = [UIImageEffects imageByApplyingDarkEffectToImage:self.md.thumb];
+    UIImage *img = [UIImageEffects imageByApplyingDarkEffectToImage:self.md.poster];
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:img];
     [tempImageView setFrame:self.tableView.frame];
     self.tableView.backgroundView = tempImageView;
@@ -68,14 +69,14 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^(void) {
         
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:weakSelf.md.strURLThumb]];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:weakSelf.md.posterURL]];
         if (imageData) {
 
             UIImage* image = [UIImage imageWithData:imageData];
             if (image) {
 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    weakSelf.md.thumb = image;
+                    weakSelf.md.poster = image;
                     [weakSelf setTableBackground];
                     [weakSelf.tableView reloadData];
                 });
@@ -206,7 +207,7 @@
         [attText addAttribute:NSForegroundColorAttributeName value:[UIColor lightBlue] range:[text rangeOfString:_md.year]];
         [attText addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:[text rangeOfString:_md.genres]];
         cell.lblName.attributedText = attText;
-        cell.imgVThumb.image = self.md.thumb;
+        cell.imgVThumb.image = self.md.poster;
         
         return cell;
     }
@@ -224,7 +225,7 @@
             [attText setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12], NSForegroundColorAttributeName: [UIColor grayColor]} range:[text rangeOfString:chara]];
             cell.lblName.attributedText = attText;
             
-            UIImage *img = ma.thumb;
+            UIImage *img = ma.actorThumb;
             if (img != nil) {
                 cell.imgVThumb.image = img;
             }
@@ -232,11 +233,11 @@
                 
                 cell.imgVThumb.image = [UIImage imageNamed:kImgPlaceholder];
                 if (tableView.dragging == NO && tableView.decelerating == NO) {
-                    [self startIconDownloadForUrl:ma.strURLThumb forIndexPath:indexPath];
+                    [self startIconDownloadForUrl:ma.actorThumbURL forIndexPath:indexPath];
                 }
             }
 
-            cell.imgVThumb.image = ma.thumb;
+            cell.imgVThumb.image = ma.actorThumb;
             
             // Make rounded image for characters
             UIImageView *imageView = cell.imgVThumb;
@@ -308,8 +309,8 @@
         NSString *secTitle = [dicSec objectForKey:@"SectionTitle"];
         if ([secTitle isEqualToString:@"Cast"] && self.md.cast.count > indexPath.row) {
             MovieActor* m = [self.md.cast objectAtIndex:indexPath.row];
-            if (m.thumb == nil)
-                [self startIconDownloadForUrl:m.strURLThumb forIndexPath:indexPath];
+            if (m.actorThumb == nil)
+                [self startIconDownloadForUrl:m.actorThumbURL forIndexPath:indexPath];
         }
     }
 }

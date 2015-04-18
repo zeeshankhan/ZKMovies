@@ -15,7 +15,7 @@
 
 @interface MovieDetails : NSObject
 
-@property (strong, nonatomic) UIImage *thumb;
+@property (strong, nonatomic) UIImage *poster;
 
 + (NSArray*)movieListFromResponse:(id)res;
 - (void)updateResponse:(NSDictionary*)dic;
@@ -23,8 +23,8 @@
 - (NSString*)title;
 - (NSString*)movieId;
 - (NSString*)year;
-- (NSString*)strURLThumb;
-- (NSString*)strURLDetail;
+- (NSString*)posterURL;
+- (NSString*)detailsURL;
 - (NSString*)genres;
 - (NSString*)storyline;
 
@@ -44,11 +44,11 @@
 @end
 
 @interface MovieActor : MovieDetails
-@property (strong, nonatomic) UIImage *thumb;
+@property (strong, nonatomic) UIImage *actorThumb;
 
 + (NSArray*)actorListFromResponse:(NSArray*)arr;
 - (NSString*)name;
 - (NSString*)character;
-- (NSString*)strURLThumb;
+- (NSString*)actorThumbURL;
 
 @end

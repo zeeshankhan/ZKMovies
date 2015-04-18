@@ -55,11 +55,11 @@
     return [Utils validString:[self.dicMovie objectForKey:@"year"]];
 }
 
-- (NSString*)strURLThumb {
+- (NSString*)posterURL {
     return [Utils validString:[self.dicMovie objectForKey:@"urlPoster"]];
 }
 
-- (NSString*)strURLDetail {
+- (NSString*)detailsURL {
     NSDictionary *posters = [self.dicMovie objectForKey:@"links"];
     return [Utils validString:[posters objectForKey:@"self"]];
 }
@@ -147,7 +147,7 @@
 
 - (void)updateCastWithThumb:(UIImage*)img onIndex:(NSInteger)index {
     MovieActor *ac = [self.arrActors objectAtIndex:index];
-    ac.thumb = img;
+    ac.actorThumb = img;
 }
 
 @end
@@ -183,10 +183,13 @@
     return [Utils validString:[self.dicActor objectForKey:@"character"]];
 }
 
-- (NSString*)strURLThumb {
+- (NSString*)actorThumbURL {
     NSString *str = [Utils validString:[self.dicActor objectForKey:@"urlPhoto"]];
-    NSString *newUrl = [NSString stringWithFormat:@"%@._V1_SY317_CR56,0,214,317_AL_.jpg",[[str componentsSeparatedByString:@"._V1_"] firstObject]];
-    return newUrl;
+    if (![str isEqualToString:@""]) {
+        NSString *newUrl = [NSString stringWithFormat:@"%@._V1_SY317_CR56,0,214,317_AL_.jpg",[[str componentsSeparatedByString:@"._V1_"] firstObject]];
+        return newUrl;
+    }
+    return str;
 }
 
 @end

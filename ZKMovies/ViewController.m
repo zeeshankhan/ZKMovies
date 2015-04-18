@@ -34,6 +34,7 @@
     self.dm = [[MovieListDM alloc] initWithDelegate:self];
     
     self.imageDownloadQueue = [[NSOperationQueue alloc] init];
+    self.imageDownloadQueue.name = @"ZKSearchListingQueue";
     [self.imageDownloadQueue setMaxConcurrentOperationCount:10];
 
     [self intializeSearchBar];
@@ -115,7 +116,7 @@
     [attText addAttribute:NSForegroundColorAttributeName value:[UIColor lightBlue] range:[text rangeOfString:m.year]];
     cell.lblName.attributedText = attText;
 
-    UIImage *img = m.thumb;
+    UIImage *img = m.poster;
     if (img != nil) {
         cell.imgVThumb.image = img;
     }
@@ -123,7 +124,7 @@
         
         cell.imgVThumb.image = [UIImage imageNamed:kImgPlaceholder];
         if (tableView.dragging == NO && tableView.decelerating == NO) {
-            [self startIconDownloadForUrl:m.strURLThumb forIndexPath:indexPath];
+            [self startIconDownloadForUrl:m.posterURL forIndexPath:indexPath];
         }
     }
     return cell;
@@ -138,7 +139,7 @@
         __block UIImage *image = img;
         if (image == nil) image = [UIImage imageNamed:kImgPlaceholder];
         MovieDetails *m = [self.arrList objectAtIndex:path.row];
-        m.thumb = image;
+        m.poster = image;
         [self.arrList replaceObjectAtIndex:path.row withObject:m];
         
         MoviesListCell *oldcell = (MoviesListCell*)[self.tableView cellForRowAtIndexPath:path];
@@ -158,8 +159,8 @@
     NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
     for (NSIndexPath *indexPath in visiblePaths) {
         MovieDetails* m = [self.arrList objectAtIndex:indexPath.row];
-        if (m.thumb == nil)
-            [self startIconDownloadForUrl:m.strURLThumb forIndexPath:indexPath];
+        if (m.poster == nil)
+            [self startIconDownloadForUrl:m.posterURL forIndexPath:indexPath];
     }
 }
 
