@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B30B2C571AD52D78009C2F3D /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B30B2C561AD52D78009C2F3D /* DetailVC.m */; };
+		B3257E281AD38F6800E08494 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E271AD38F6800E08494 /* main.m */; };
+		B3257E2B1AD38F6800E08494 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E2A1AD38F6800E08494 /* AppDelegate.m */; };
+		B3257E311AD38F6800E08494 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E301AD38F6800E08494 /* ViewController.m */; };
+		B3257E341AD38F6800E08494 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3257E321AD38F6800E08494 /* Main.storyboard */; };
+		B3257E551AD394A900E08494 /* MoviesListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E531AD394A900E08494 /* MoviesListCell.m */; };
+		B3257E5C1AD394EC00E08494 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E591AD394EC00E08494 /* DBManager.m */; };
+		B3257E5D1AD394EC00E08494 /* ZKMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3257E5A1AD394EC00E08494 /* ZKMovies.xcdatamodeld */; };
+		B3257E651AD3A06D00E08494 /* ZKNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E641AD3A06D00E08494 /* ZKNetworkManager.m */; };
+		B3257E6E1AD3AF1500E08494 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E6D1AD3AF1500E08494 /* DataManager.m */; };
+		B3257E741AD3C37600E08494 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E731AD3C37600E08494 /* Movie.m */; };
+		B3257E771AD3C3E900E08494 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = B3257E761AD3C3E900E08494 /* CoreDataStack.m */; };
+		D04AD9491AD4467200193190 /* ZKImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AD9481AD4467200193190 /* ZKImageDownloader.m */; };
+		D04AD94C1AD4477E00193190 /* MovieDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AD94B1AD4477E00193190 /* MovieDetails.m */; };
+		D05D5B7F1AD6011000CB708C /* DetailScreen.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05D5B7E1AD6011000CB708C /* DetailScreen.plist */; };
+		D0A8A5921AD8A749001F6FC6 /* Recent.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A8A5911AD8A749001F6FC6 /* Recent.m */; };
+		D0A8A5981AD8A82F001F6FC6 /* RecentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A8A5971AD8A82F001F6FC6 /* RecentVC.m */; };
+		D0A8A5B81AD93926001F6FC6 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A8A5B51AD93926001F6FC6 /* UIImageEffects.m */; };
+		D0A8A5B91AD93926001F6FC6 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A8A5B71AD93926001F6FC6 /* Utils.m */; };
+		D0A8A5C81AD93EE9001F6FC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A8A5C71AD93EE9001F6FC6 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B30B2C551AD52D78009C2F3D /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
+		B30B2C561AD52D78009C2F3D /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
+		B3257E221AD38F6800E08494 /* ZKMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3257E261AD38F6800E08494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3257E271AD38F6800E08494 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B3257E291AD38F6800E08494 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B3257E2A1AD38F6800E08494 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B3257E2F1AD38F6800E08494 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B3257E301AD38F6800E08494 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B3257E331AD38F6800E08494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B3257E521AD394A900E08494 /* MoviesListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesListCell.h; sourceTree = "<group>"; };
+		B3257E531AD394A900E08494 /* MoviesListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesListCell.m; sourceTree = "<group>"; };
+		B3257E581AD394EC00E08494 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		B3257E591AD394EC00E08494 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		B3257E5B1AD394EC00E08494 /* ZKMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZKMovies.xcdatamodel; sourceTree = "<group>"; };
+		B3257E631AD3A06D00E08494 /* ZKNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKNetworkManager.h; sourceTree = "<group>"; };
+		B3257E641AD3A06D00E08494 /* ZKNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKNetworkManager.m; sourceTree = "<group>"; };
+		B3257E6C1AD3AF1500E08494 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		B3257E6D1AD3AF1500E08494 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		B3257E721AD3C37600E08494 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		B3257E731AD3C37600E08494 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		B3257E751AD3C3E900E08494 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		B3257E761AD3C3E900E08494 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		D04AD9471AD4467200193190 /* ZKImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKImageDownloader.h; sourceTree = "<group>"; };
+		D04AD9481AD4467200193190 /* ZKImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKImageDownloader.m; sourceTree = "<group>"; };
+		D04AD94A1AD4477E00193190 /* MovieDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetails.h; sourceTree = "<group>"; };
+		D04AD94B1AD4477E00193190 /* MovieDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetails.m; sourceTree = "<group>"; };
+		D05D5B7E1AD6011000CB708C /* DetailScreen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DetailScreen.plist; sourceTree = "<group>"; };
+		D0A8A5901AD8A749001F6FC6 /* Recent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recent.h; sourceTree = "<group>"; };
+		D0A8A5911AD8A749001F6FC6 /* Recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recent.m; sourceTree = "<group>"; };
+		D0A8A5961AD8A82F001F6FC6 /* RecentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentVC.h; sourceTree = "<group>"; };
+		D0A8A5971AD8A82F001F6FC6 /* RecentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentVC.m; sourceTree = "<group>"; };
+		D0A8A5B41AD93926001F6FC6 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		D0A8A5B51AD93926001F6FC6 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
+		D0A8A5B61AD93926001F6FC6 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		D0A8A5B71AD93926001F6FC6 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		D0A8A5C71AD93EE9001F6FC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B3257E1F1AD38F6800E08494 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B3257E191AD38F6800E08494 = {
+			isa = PBXGroup;
+			children = (
+				B3257E241AD38F6800E08494 /* ZKMovies */,
+				B3257E231AD38F6800E08494 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B3257E231AD38F6800E08494 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3257E221AD38F6800E08494 /* ZKMovies.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3257E241AD38F6800E08494 /* ZKMovies */ = {
+			isa = PBXGroup;
+			children = (
+				B3257E291AD38F6800E08494 /* AppDelegate.h */,
+				B3257E2A1AD38F6800E08494 /* AppDelegate.m */,
+				B3257E2F1AD38F6800E08494 /* ViewController.h */,
+				B3257E301AD38F6800E08494 /* ViewController.m */,
+				B30B2C551AD52D78009C2F3D /* DetailVC.h */,
+				B30B2C561AD52D78009C2F3D /* DetailVC.m */,
+				D0A8A5961AD8A82F001F6FC6 /* RecentVC.h */,
+				D0A8A5971AD8A82F001F6FC6 /* RecentVC.m */,
+				B3257E321AD38F6800E08494 /* Main.storyboard */,
+				D05D5B7E1AD6011000CB708C /* DetailScreen.plist */,
+				B3257E5E1AD39B7700E08494 /* DataManager */,
+				B3257E511AD3946700E08494 /* MovieListCell */,
+				B3257E571AD394EC00E08494 /* CoreDataItems */,
+				B3257E5F1AD3A03700E08494 /* NetworkManager */,
+				D0A8A5B31AD93926001F6FC6 /* Utils */,
+				B3257E251AD38F6800E08494 /* Supporting Files */,
+			);
+			path = ZKMovies;
+			sourceTree = "<group>";
+		};
+		B3257E251AD38F6800E08494 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3257E261AD38F6800E08494 /* Info.plist */,
+				B3257E271AD38F6800E08494 /* main.m */,
+				D0A8A5C71AD93EE9001F6FC6 /* Images.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3257E511AD3946700E08494 /* MovieListCell */ = {
+			isa = PBXGroup;
+			children = (
+				B3257E521AD394A900E08494 /* MoviesListCell.h */,
+				B3257E531AD394A900E08494 /* MoviesListCell.m */,
+			);
+			path = MovieListCell;
+			sourceTree = "<group>";
+		};
+		B3257E571AD394EC00E08494 /* CoreDataItems */ = {
+			isa = PBXGroup;
+			children = (
+				B3257E721AD3C37600E08494 /* Movie.h */,
+				B3257E731AD3C37600E08494 /* Movie.m */,
+				D0A8A5901AD8A749001F6FC6 /* Recent.h */,
+				D0A8A5911AD8A749001F6FC6 /* Recent.m */,
+				B3257E581AD394EC00E08494 /* DBManager.h */,
+				B3257E591AD394EC00E08494 /* DBManager.m */,
+				B3257E751AD3C3E900E08494 /* CoreDataStack.h */,
+				B3257E761AD3C3E900E08494 /* CoreDataStack.m */,
+				B3257E5A1AD394EC00E08494 /* ZKMovies.xcdatamodeld */,
+			);
+			path = CoreDataItems;
+			sourceTree = "<group>";
+		};
+		B3257E5E1AD39B7700E08494 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				B3257E6C1AD3AF1500E08494 /* DataManager.h */,
+				B3257E6D1AD3AF1500E08494 /* DataManager.m */,
+				D04AD94A1AD4477E00193190 /* MovieDetails.h */,
+				D04AD94B1AD4477E00193190 /* MovieDetails.m */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		B3257E5F1AD3A03700E08494 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				D04AD9471AD4467200193190 /* ZKImageDownloader.h */,
+				D04AD9481AD4467200193190 /* ZKImageDownloader.m */,
+				B3257E631AD3A06D00E08494 /* ZKNetworkManager.h */,
+				B3257E641AD3A06D00E08494 /* ZKNetworkManager.m */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		D0A8A5B31AD93926001F6FC6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D0A8A5B41AD93926001F6FC6 /* UIImageEffects.h */,
+				D0A8A5B51AD93926001F6FC6 /* UIImageEffects.m */,
+				D0A8A5B61AD93926001F6FC6 /* Utils.h */,
+				D0A8A5B71AD93926001F6FC6 /* Utils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B3257E211AD38F6800E08494 /* ZKMovies */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3257E481AD38F6800E08494 /* Build configuration list for PBXNativeTarget "ZKMovies" */;
+			buildPhases = (
+				B3257E1E1AD38F6800E08494 /* Sources */,
+				B3257E1F1AD38F6800E08494 /* Frameworks */,
+				B3257E201AD38F6800E08494 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZKMovies;
+			productName = ZKMovies;
+			productReference = B3257E221AD38F6800E08494 /* ZKMovies.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B3257E1A1AD38F6800E08494 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Zeeshan;
+				TargetAttributes = {
+					B3257E211AD38F6800E08494 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = B3257E1D1AD38F6800E08494 /* Build configuration list for PBXProject "ZKMovies" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B3257E191AD38F6800E08494;
+			productRefGroup = B3257E231AD38F6800E08494 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B3257E211AD38F6800E08494 /* ZKMovies */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B3257E201AD38F6800E08494 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A8A5C81AD93EE9001F6FC6 /* Images.xcassets in Resources */,
+				D05D5B7F1AD6011000CB708C /* DetailScreen.plist in Resources */,
+				B3257E341AD38F6800E08494 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B3257E1E1AD38F6800E08494 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3257E2B1AD38F6800E08494 /* AppDelegate.m in Sources */,
+				B3257E5D1AD394EC00E08494 /* ZKMovies.xcdatamodeld in Sources */,
+				B3257E741AD3C37600E08494 /* Movie.m in Sources */,
+				B30B2C571AD52D78009C2F3D /* DetailVC.m in Sources */,
+				B3257E311AD38F6800E08494 /* ViewController.m in Sources */,
+				B3257E771AD3C3E900E08494 /* CoreDataStack.m in Sources */,
+				D04AD94C1AD4477E00193190 /* MovieDetails.m in Sources */,
+				B3257E551AD394A900E08494 /* MoviesListCell.m in Sources */,
+				D04AD9491AD4467200193190 /* ZKImageDownloader.m in Sources */,
+				B3257E651AD3A06D00E08494 /* ZKNetworkManager.m in Sources */,
+				B3257E281AD38F6800E08494 /* main.m in Sources */,
+				B3257E6E1AD3AF1500E08494 /* DataManager.m in Sources */,
+				D0A8A5B81AD93926001F6FC6 /* UIImageEffects.m in Sources */,
+				B3257E5C1AD394EC00E08494 /* DBManager.m in Sources */,
+				D0A8A5921AD8A749001F6FC6 /* Recent.m in Sources */,
+				D0A8A5981AD8A82F001F6FC6 /* RecentVC.m in Sources */,
+				D0A8A5B91AD93926001F6FC6 /* Utils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B3257E321AD38F6800E08494 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3257E331AD38F6800E08494 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B3257E461AD38F6800E08494 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B3257E471AD38F6800E08494 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B3257E491AD38F6800E08494 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = ZKMovies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B3257E4A1AD38F6800E08494 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = ZKMovies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B3257E1D1AD38F6800E08494 /* Build configuration list for PBXProject "ZKMovies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3257E461AD38F6800E08494 /* Debug */,
+				B3257E471AD38F6800E08494 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3257E481AD38F6800E08494 /* Build configuration list for PBXNativeTarget "ZKMovies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3257E491AD38F6800E08494 /* Debug */,
+				B3257E4A1AD38F6800E08494 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B3257E5A1AD394EC00E08494 /* ZKMovies.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B3257E5B1AD394EC00E08494 /* ZKMovies.xcdatamodel */,
+			);
+			currentVersion = B3257E5B1AD394EC00E08494 /* ZKMovies.xcdatamodel */;
+			path = ZKMovies.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B3257E1A1AD38F6800E08494 /* Project object */;
+}
