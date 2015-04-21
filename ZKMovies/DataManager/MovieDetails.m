@@ -14,7 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *arrActors;
 @end
 
-
 @implementation MovieDetails
 
 + (NSArray*)movieListFromResponse:(id)res {
@@ -37,88 +36,46 @@
     self = [super init];
     if (self) {
         self.dicMovie = [dic mutableCopy];
+        [self setMovieInfo:dic];
     }
     return self;
 }
 
-#pragma mark - Movie Info
+- (void)setMovieInfo:(NSDictionary*)dicInfo {
 
-- (NSString*)movieId {
-    return [Utils validString:[self.dicMovie objectForKey:@"idIMDB"]];
-}
+    self.title = [Utils validString:[self.dicMovie objectForKey:kAPIKeyTitle]];
+    self.movieId = [Utils validString:[self.dicMovie objectForKey:kAPIKeyMovieId]];
+    self.year = [Utils validString:[self.dicMovie objectForKey:kAPIKeyYear]];
+    self.posterURL = [Utils validString:[self.dicMovie objectForKey:kAPIKeyPosterURL]];
+    
+    NSArray *arr = [self.dicMovie objectForKey:kAPIKeyGenres];
+    self.genres = [Utils validString:[arr componentsJoinedByString:@" / "]];
+    
+    self.storyline = [Utils validString:[self.dicMovie objectForKey:kAPIKeyStoryline]];
 
-- (NSString*)title {
-    return [Utils validString:[self.dicMovie objectForKey:@"title"]];
-}
-
-- (NSString*)year {
-    return [Utils validString:[self.dicMovie objectForKey:@"year"]];
-}
-
-- (NSString*)posterURL {
-    return [Utils validString:[self.dicMovie objectForKey:@"urlPoster"]];
-}
-
-- (NSString*)detailsURL {
-    NSDictionary *posters = [self.dicMovie objectForKey:@"links"];
-    return [Utils validString:[posters objectForKey:@"self"]];
-}
-
-- (NSString*)genres {
-    NSArray *arr = [self.dicMovie objectForKey:kDetailKeyGenres];
-    return [Utils validString:[arr componentsJoinedByString:@" / "]];
-}
-
-- (NSString*)storyline {
-    return [Utils validString:[self.dicMovie objectForKey:@"simplePlot"]];
-}
-
-- (NSString*)rating {
-    return [Utils validString:[self.dicMovie objectForKey:@"rating"]];
-}
-
-- (NSString*)languages {
-    NSArray *arr = [self.dicMovie objectForKey:@"languages"];
-    return [Utils validString:[arr componentsJoinedByString:@" / "]];
-}
-
-- (NSString*)countries {
-    NSArray *arr = [self.dicMovie objectForKey:@"countries"];
-    return [Utils validString:[arr componentsJoinedByString:@" / "]];
-}
-
-- (NSString*)filmingLocations {
-    NSArray *arr = [self.dicMovie objectForKey:@"filmingLocations"];
-    return [Utils validString:[arr componentsJoinedByString:@" / "]];
-}
-
-- (NSString*)runtime {
-    NSArray *arr = [self.dicMovie objectForKey:@"runtime"];
-    return [Utils validString:[arr firstObject]];
-}
-
-- (NSString*)directors {
-    NSArray *arr = [self.dicMovie objectForKey:@"directors"];
+    arr = [self.dicMovie objectForKey:kAPIKeyLanguages];
+    self.languages = [Utils validString:[arr componentsJoinedByString:@" / "]];
+    
+    arr = [self.dicMovie objectForKey:kAPIKeyDirectors];
     NSMutableArray *names = [@[] mutableCopy];
     for (NSDictionary *dic in arr) {
         NSString *name = [Utils validString:[dic objectForKey:@"name"]];
         if (name.length>0) [names addObject:name];
     }
-    return [names componentsJoinedByString:@", "];
-}
-
-- (NSString*)writers {
-    NSArray *arr = [self.dicMovie objectForKey:@"writers"];
-    NSMutableArray *names = [@[] mutableCopy];
+    self.directors = [names componentsJoinedByString:@", "];
+    
+    arr = [self.dicMovie objectForKey:kAPIKeyWriters];
+    NSMutableArray *arrNames = [@[] mutableCopy];
     for (NSDictionary *dic in arr) {
         NSString *name = [Utils validString:[dic objectForKey:@"name"]];
-        if (name.length>0) [names addObject:name];
+        if (name.length>0) [arrNames addObject:name];
     }
-    return [names componentsJoinedByString:@", "];
-}
-
-- (NSString*)releaseDate {
-    NSString *dt = [Utils validString:[self.dicMovie objectForKey:@"releaseDate"]];
+    self.writers = [names componentsJoinedByString:@", "];
+    
+    arr = [self.dicMovie objectForKey:kAPIKeyRuntime];
+    self.runtime = [Utils validString:[arr firstObject]];
+    
+    NSString *dt = [Utils validString:[self.dicMovie objectForKey:kAPIKeyReleaseDate]];
     if (dt.length > 0) {
         NSDateFormatter *df = [NSDateFormatter new];
         [df setDateFormat:@"yyyymmdd"];
@@ -126,7 +83,15 @@
         [df setDateFormat:@"yyyy/mm/dd"];
         dt = [df stringFromDate:d];
     }
-    return dt;
+    self.releaseDate = dt;
+    
+    self.rating = [Utils validString:[self.dicMovie objectForKey:kAPIKeyRating]];
+    
+    arr = [self.dicMovie objectForKey:kAPIKeyCountries];
+    self.countries = [Utils validString:[arr componentsJoinedByString:@" / "]];
+    
+    arr = [self.dicMovie objectForKey:kAPIKeyFilmingLocations];
+    self.filmingLocations = [Utils validString:[arr componentsJoinedByString:@" / "]];
 }
 
 #pragma mark - Cast
@@ -142,6 +107,7 @@
 }
 
 - (NSInteger)castCount {
+    if (_arrActors) return _arrActors.count;
     return [[self.dicMovie objectForKey:@"actors"] count];
 }
 

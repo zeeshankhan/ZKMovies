@@ -34,6 +34,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.arrRecent = [[[DBManager new] getSearchList] mutableCopy];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -138,7 +138,7 @@ static NSInteger reqCounter;                     // To maintain the number of re
     self.absoluteStartTime = CFAbsoluteTimeGetCurrent();
     
     self.operationConnection = [[NSURLConnection alloc] initWithRequest:self.operationRequest delegate:self startImmediately:NO];
-    
+  
     NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
     BOOL inBackgroundAndInOperationQueue = (currentQueue != nil && currentQueue != [NSOperationQueue mainQueue]);
     NSRunLoop *targetRunLoop = (inBackgroundAndInOperationQueue) ? [NSRunLoop currentRunLoop] : [NSRunLoop mainRunLoop];
@@ -234,11 +234,10 @@ static NSInteger reqCounter;                     // To maintain the number of re
         
         NSError *serverError = error;
         if (response == nil && (!serverError || self.operationURLResponse.statusCode == 500)) {
-            serverError = [NSError errorWithDomain:NSURLErrorDomain
-                                              code:NSURLErrorBadServerResponse
-                                          userInfo:@{NSLocalizedDescriptionKey: @"Bad Server Response.",
-                                                     NSURLErrorFailingURLErrorKey: self.operationRequest.URL,
-                                                     NSURLErrorFailingURLStringErrorKey: self.operationRequest.URL.absoluteString}];
+            NSDictionary *dicInfo = @{NSLocalizedDescriptionKey: @"Bad Server Response.",
+                                      NSURLErrorFailingURLErrorKey: self.operationRequest.URL,
+                                      NSURLErrorFailingURLStringErrorKey: self.operationRequest.URL.absoluteString};
+            serverError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:dicInfo];
         }
         
         if (self.operationCompletionBlock && !self.isCancelled)

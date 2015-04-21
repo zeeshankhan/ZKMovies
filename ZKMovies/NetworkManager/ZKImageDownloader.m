@@ -42,7 +42,7 @@
             NSLog(@"Img Download Error: '%@'", self.imageUrl);
         }
         
-        if (![self isCancelled] && _delegate != nil && [_delegate conformsToProtocol:@protocol(ImageDownloadDelegate)])
+        if (![self isCancelled] && _delegate != nil && [_delegate conformsToProtocol:@protocol(ImageDownloadDelegate)] && [_delegate respondsToSelector:@selector(imageLoaded:forPath:)])
             [_delegate imageLoaded:image forPath:self.cellPath];
     }
 }
