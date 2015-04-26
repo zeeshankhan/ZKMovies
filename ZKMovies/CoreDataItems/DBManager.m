@@ -26,7 +26,7 @@
     //    [fetchRequest setResultType:NSDictionaryResultType];
     
     if (searchString) {
-        NSPredicate *pre = [NSPredicate predicateWithFormat:@"search == %@", searchString];
+        NSPredicate *pre = [NSPredicate predicateWithFormat:@"search == %@", [searchString lowercaseString]];
         [fetchRequest setPredicate:pre];
     }
     
@@ -44,7 +44,14 @@
         NSLog(@"[DB Error] Search String is nil."); return;
     }
     
-    NSArray *arr = [self getSearchListWithSearchItem:searchString];
+    NSArray *arr = nil;
+    // Print all items name
+//    arr = [self getSearchListWithSearchItem:nil];
+//    for (Recent* r in arr) {
+//        NSLog(@"%@", r.search);
+//    }
+
+    arr = [self getSearchListWithSearchItem:searchString];
     if (arr.count > 0) {
         NSLog(@"[DB Error] Search item already exist.: %@", searchString); return;
     }
@@ -53,7 +60,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([Recent class]) inManagedObjectContext:context];
     Recent *row = (Recent*)[[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
     if (row) {
-        row.search = searchString;
+        row.search = [searchString lowercaseString];
         row.dt = [NSDate date];
     }
     
