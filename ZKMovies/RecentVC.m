@@ -107,9 +107,12 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recent" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([Recent class]) inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"search" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
@@ -183,7 +186,6 @@
 }
 
 // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 

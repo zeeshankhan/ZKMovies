@@ -89,6 +89,9 @@
 - (void)refreshedList:(NSArray*)arrItems {
     if (arrItems) {
         self.arrList = [arrItems mutableCopy];
+        for (int x=0; x<5; x++) {
+            [self.arrList addObjectsFromArray:arrItems];
+        }
         [self.tableView reloadData];
     }
 }
@@ -132,18 +135,20 @@
 
 #pragma mark - Image Download Delegate callback
 
-- (void)imageLoaded:( UIImage*)img forPath:(NSIndexPath*)path {
+- (void)imageLoaded:(UIImage*)img forPath:(NSIndexPath*)path {
     
+    __weak ViewController *weakSelf = self;
     dispatch_sync(dispatch_get_main_queue(), ^{
-        
-        __block UIImage *image = img;
-        if (image == nil) image = [UIImage imageNamed:kImgPlaceholder];
-        MovieDetails *m = [self.arrList objectAtIndex:path.row];
-        m.poster = image;
-        [self.arrList replaceObjectAtIndex:path.row withObject:m];
-        
-        MoviesListCell *oldcell = (MoviesListCell*)[self.tableView cellForRowAtIndexPath:path];
-        oldcell.imgVThumb.image = image;
+        if (weakSelf) {
+            __block UIImage *image = img;
+            if (image == nil) image = [UIImage imageNamed:kImgPlaceholder];
+            MovieDetails *m = [weakSelf.arrList objectAtIndex:path.row];
+            m.poster = image;
+            [weakSelf.arrList replaceObjectAtIndex:path.row withObject:m];
+            
+            MoviesListCell *oldcell = (MoviesListCell*)[weakSelf.tableView cellForRowAtIndexPath:path];
+            oldcell.imgVThumb.image = image;
+        }
     });
 
 }

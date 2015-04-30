@@ -14,4 +14,8 @@
 @dynamic dt;
 @dynamic search;
 
+- (NSString*)description {
+    return [NSString stringWithFormat:@"Recent Search: '%@' on '%@'", self.search, self.dt];
+}
+
 @end

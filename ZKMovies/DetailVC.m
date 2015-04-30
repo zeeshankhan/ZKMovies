@@ -236,8 +236,6 @@
                     [self startIconDownloadForUrl:ma.actorThumbURL forIndexPath:indexPath];
                 }
             }
-
-            cell.imgVThumb.image = ma.actorThumb;
             
             // Make rounded image for characters
             UIImageView *imageView = cell.imgVThumb;
@@ -283,14 +281,17 @@
 
 - (void)imageLoaded:( UIImage*)img forPath:(NSIndexPath*)path {
     
+    __weak DetailVC *weakSelf = self;
+
     dispatch_sync(dispatch_get_main_queue(), ^{
-        
-        __block UIImage *image = img;
-        if (image == nil) image = [UIImage imageNamed:kImgPlaceholder];
-        [self.md updateCastWithThumb:image onIndex:path.row];
-        
-        MoviesListCell *oldcell = (MoviesListCell*)[self.tableView cellForRowAtIndexPath:path];
-        oldcell.imgVThumb.image = image;
+        if (weakSelf) {
+            __block UIImage *image = img;
+            if (image == nil) image = [UIImage imageNamed:kImgPlaceholder];
+            [weakSelf.md updateCastWithThumb:image onIndex:path.row];
+            
+            MoviesListCell *oldcell = (MoviesListCell*)[weakSelf.tableView cellForRowAtIndexPath:path];
+            oldcell.imgVThumb.image = image;
+        }
     });
     
 }
