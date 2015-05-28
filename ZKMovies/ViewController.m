@@ -89,9 +89,6 @@
 - (void)refreshedList:(NSArray*)arrItems {
     if (arrItems) {
         self.arrList = [arrItems mutableCopy];
-        for (int x=0; x<5; x++) {
-            [self.arrList addObjectsFromArray:arrItems];
-        }
         [self.tableView reloadData];
     }
 }

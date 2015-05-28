@@ -84,11 +84,7 @@ static NSInteger reqCounter;                     // To maintain the number of re
         NSString *strParam = [Utils validString:[self parameterStringFromDictionary:parameters]];
         if (strParam.length > 0)
             urlString = [NSString stringWithFormat:@"%@&%@", urlString, strParam];
-        NSURL *url = [NSURL URLWithString:urlString];
-        self.operationRequest = [[NSMutableURLRequest alloc] initWithURL:url];
-        
-       [self.operationRequest setHTTPMethod:@"GET"];
-        
+        self.operationURL = [NSURL URLWithString:urlString];
     }
     
     return self;
@@ -132,30 +128,9 @@ static NSInteger reqCounter;                     // To maintain the number of re
         [self increaseRequestTaskCount];
     });
     
-    [self.operationRequest setTimeoutInterval:self.timeoutInterval];
-    [self.operationRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-    
     self.absoluteStartTime = CFAbsoluteTimeGetCurrent();
-    
-    self.operationConnection = [[NSURLConnection alloc] initWithRequest:self.operationRequest delegate:self startImmediately:NO];
-  
-    NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
-    BOOL inBackgroundAndInOperationQueue = (currentQueue != nil && currentQueue != [NSOperationQueue mainQueue]);
-    NSRunLoop *targetRunLoop = (inBackgroundAndInOperationQueue) ? [NSRunLoop currentRunLoop] : [NSRunLoop mainRunLoop];
 
-//    NSLog(@"[HTTP]Request Running on: %@", (inBackgroundAndInOperationQueue) ? @"Current Run Loop" : @"Main Run Loop" );
-    
-    [self.operationConnection scheduleInRunLoop:targetRunLoop forMode:NSDefaultRunLoopMode]; // NSRunLoopCommonModes
-    [self.operationConnection start];
-    
-    // make NSRunLoop stick around until operation is finished
-    if(inBackgroundAndInOperationQueue) {
-        self.operationRunLoop = CFRunLoopGetCurrent();
-        CFRunLoopRun();
-    }
-    
-    NSLog(@"[HTTPRequest] %@ / %@", self.operationRequest.HTTPMethod, self.operationRequest.URL.absoluteString);
-    
+    [self setupNewNetwork]; //initiateNetworkRequest
 }
 
 - (void)cancel {
@@ -188,7 +163,59 @@ static NSInteger reqCounter;                     // To maintain the number of re
     });
 }
 
+#pragma mark - New Network
+
+- (void)setupNewNetwork {
+
+    __weak ZKNetworkRequest *weakSelf = self;
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.operationURL
+            completionHandler:^(NSData *data,
+            NSURLResponse *response,
+            NSError *error) {
+                // handle response
+                weakSelf.operationURLResponse = (NSHTTPURLResponse*)response;
+                NSLog(@"[Status Code]: %@", @(weakSelf.operationURLResponse.statusCode));
+                
+                [weakSelf callCompletionBlockWithResponse:data error:error];
+            }];
+    [dataTask resume];
+}
+
 #pragma mark - Connection Delegates
+
+- (void)initiateNetworkRequest {
+
+    self.operationRequest = [[NSMutableURLRequest alloc] initWithURL:self.operationURL];
+    [self.operationRequest setHTTPMethod:@"GET"];
+    [self.operationRequest setTimeoutInterval:self.timeoutInterval];
+    [self.operationRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+    
+    self.operationConnection = [[NSURLConnection alloc] initWithRequest:self.operationRequest delegate:self startImmediately:NO];
+    
+    /* Some Points.
+     * 1. The connection retains delegate. It releases delegate when the connection finishes loading, fails, or is canceled.
+     * 2. If you are performing this on a background thread, the thread is probably exiting before the delegates can be called.
+     * 3. As document of START method says: If you don’t schedule the connection in a run loop or an operation queue before calling this method, the connection would be scheduled in the current run loop in the default mode.
+     */
+    
+    NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
+    BOOL inBackgroundAndInOperationQueue = (currentQueue != nil && currentQueue != [NSOperationQueue mainQueue]);
+    NSRunLoop *targetRunLoop = (inBackgroundAndInOperationQueue) ? [NSRunLoop currentRunLoop] : [NSRunLoop mainRunLoop];
+    
+    //    NSLog(@"[HTTP]Request Running on: %@", (inBackgroundAndInOperationQueue) ? @"Current Run Loop" : @"Main Run Loop" );
+    
+    [self.operationConnection scheduleInRunLoop:targetRunLoop forMode:NSDefaultRunLoopMode]; // NSRunLoopCommonModes
+    [self.operationConnection start];
+    NSLog(@"[HTTPRequest] %@ / %@", self.operationRequest.HTTPMethod, self.operationRequest.URL.absoluteString);
+    
+    // make NSRunLoop stick around until operation is finished
+    if (inBackgroundAndInOperationQueue) {
+        self.operationRunLoop = CFRunLoopGetCurrent();
+        CFRunLoopRun();
+    }
+
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
@@ -220,6 +247,8 @@ static NSInteger reqCounter;                     // To maintain the number of re
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self callCompletionBlockWithResponse:nil error:error];
 }
+
+#pragma mark - Final Callback
 
 - (void)callCompletionBlockWithResponse:(id)response error:(NSError *)error {
     

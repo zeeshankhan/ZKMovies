@@ -28,6 +28,7 @@ typedef void (^NetworkRequestCompletionHandler)(id response, NSError *error);
 @property (nonatomic) CFTimeInterval absoluteStartTime;
 @property (nonatomic) CFTimeInterval absoluteResponseTime;
 
+@property (nonatomic, strong) NSURL                         *operationURL;
 @property (nonatomic, strong) NSMutableURLRequest  *operationRequest;
 @property (nonatomic, strong) NSMutableData             *operationData;
 @property (nonatomic, strong) NSURLConnection          *operationConnection;

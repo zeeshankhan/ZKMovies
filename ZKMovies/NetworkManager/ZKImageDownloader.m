@@ -45,6 +45,27 @@
         if (![self isCancelled] && _delegate != nil && [_delegate conformsToProtocol:@protocol(ImageDownloadDelegate)] && [_delegate respondsToSelector:@selector(imageLoaded:forPath:)])
             [_delegate imageLoaded:image forPath:self.cellPath];
     }
+/*
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDownloadTask *getImageTask =
+    [session downloadTaskWithURL:[NSURL URLWithString:self.imageUrl]
+               completionHandler:^(NSURL *location,
+                                   NSURLResponse *response,
+                                   NSError *error) {
+
+                   UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                       // do stuff with image
+                       if (![self isCancelled] && _delegate != nil && [_delegate conformsToProtocol:@protocol(ImageDownloadDelegate)] && [_delegate respondsToSelector:@selector(imageLoaded:forPath:)])
+                           [_delegate imageLoaded:image forPath:self.cellPath];
+                   });
+               }];
+    
+    [getImageTask resume];
+*/
+    
 }
 
 @end
