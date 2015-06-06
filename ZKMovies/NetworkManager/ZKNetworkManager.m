@@ -169,6 +169,9 @@ static NSInteger reqCounter;                     // To maintain the number of re
 
     __weak ZKNetworkRequest *weakSelf = self;
     NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSLog(@"URL: %@", self.operationURL);
+    
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.operationURL
             completionHandler:^(NSData *data,
             NSURLResponse *response,
